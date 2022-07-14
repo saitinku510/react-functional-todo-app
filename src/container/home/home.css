@@ -1,0 +1,18 @@
+section{
+    width: 100%;
+    padding: 100px 0;
+}
+.container{
+    max-width: 1200px;
+    margin: auto;
+}
+.todo{
+    max-width: 600px;
+    background-color: beige;
+    margin: auto;
+    padding: 30px;
+    border-radius: 20px;
+}
+h2{
+    padding: 10px 0;
+}
