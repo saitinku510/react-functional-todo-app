@@ -1,62 +1,78 @@
 import React, { useState } from "react";
 import "./style.css";
+function Todo() {
+  const [tasks, setTasks] = useState([]);
+  const [state, setState] = useState({
+    newtask: "",
+    editflag: false,
+    editIndex: null,
+  });
 
-function Index() {
-  const [value, setValue] = useState("");
-  const [items, setItem] = useState([]);
-  const [editValue, setEditValue] = useState(null);
-
-  const addItem = (e) => {
-    e.preventDefault();
-
-    setItem([
-      ...items,
-      {
-        id: items.length,
-        value: value,
-      },
-    ]);
-    setValue("");
+  const handleUpdate = () => {
+    var temp = tasks;
+    temp[state.editIndex] = state.newtask;
+    setTasks([...temp]);
+    setState({ ...state, newtask: "", editflag: false, editIndex: null });
+  };
+  const addtask = () => {
+    setTasks([...tasks, state.newtask]);
+    setState({ ...state, newtask: "" });
   };
 
-  const editFunction = (index) => {
-    console.log(index);
+  const handledelete = (index) => {
+    var temp = tasks;
+    temp.splice(index, 1);
+    setTasks([...temp]);
   };
-
-  const deleteInput = (index) => {
-    setItem((items) => items.filter((_, i) => i !== index));
-  };
-  const handleChange = (e) => {
-    console.log(e.target.value);
+  const handleEdit = (index) => {
+    var x = tasks[index];
+    setState({ ...state, newtask: x, editflag: true, editIndex: index });
   };
 
   return (
     <div>
-      <form className="todoForm">
+      <div className="todoForm">
         <input
           type="text"
-          placeholder="Enter your task"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => {
+            setState({
+              ...state,
+              newtask: e.target.value,
+            });
+          }}
+          value={state.newtask}
         />
-        <button onClick={addItem}>Add Task</button>
-      </form>
+        &nbsp;
+        {!state.editflag && <button onClick={addtask}>Add</button>}
+        {state.editflag && <button onClick={handleUpdate}>Update</button>}
+      </div>
       <h2>Todo List</h2>
-      {items.map((item, index) => (
-        <div className="todoList">
-          <input
-            type="text"
-            key={item.id}
-            // onChange={(e) => setValue(e.target.value)}
-            onChange={handleChange}
-            value={item.value}
-          />
-          <button onClick={() => editFunction(item)}>Edit</button>
-          <button onClick={() => deleteInput(index)}>Del</button>
-        </div>
-      ))}
+
+      {tasks.map((t, i) => {
+        return (
+          <ul className="todoList">
+            <li key={i}>
+              {t}
+
+              <button
+                onClick={() => {
+                  handleEdit(i);
+                }}
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => {
+                  handledelete(i);
+                }}
+              >
+                Delete
+              </button>
+            </li>
+          </ul>
+        );
+      })}
     </div>
   );
 }
-
-export default Index;
+export default Todo;

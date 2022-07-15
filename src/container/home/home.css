@@ -8,11 +8,15 @@ section{
 }
 .todo{
     max-width: 600px;
-    background-color: beige;
+    background-color: rgb(0, 0, 0);
     margin: auto;
     padding: 30px;
     border-radius: 20px;
 }
 h2{
     padding: 10px 0;
+    color: #fff;
+}
+h1{
+    color: #fff;
 }

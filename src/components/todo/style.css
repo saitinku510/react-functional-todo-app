@@ -15,8 +15,21 @@ button{
     cursor: pointer;
     border: 0.2px solid grey;
 }
-.todoList{
-    display: flex;
-    gap: 10px;
-    padding: 10px 0;
+ul{
+    padding: 0;
+}
+.todoList li{
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.486);
+    list-style: none;
+    width: 94%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 0.5px solid rgba(43, 42, 42, 0.479);
+    color: #fff;
+}
+.todoList button{
+    flex-grow: 0;
+    float: right;
+    margin: 0 5px;
 }
