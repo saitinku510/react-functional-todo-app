@@ -42,18 +42,15 @@ function Todo() {
           }}
           value={state.newtask}
         />
-        &nbsp;
         {!state.editflag && <button onClick={addtask}>Add</button>}
         {state.editflag && <button onClick={handleUpdate}>Update</button>}
       </div>
       <h2>Todo List</h2>
-
       {tasks.map((t, i) => {
         return (
           <ul className="todoList">
             <li key={i}>
               {t}
-
               <button
                 onClick={() => {
                   handleEdit(i);
